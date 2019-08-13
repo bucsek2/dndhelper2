@@ -153,7 +153,9 @@ export class SurvivalHelper extends React.Component<{}, SurvivalHelperState> {
                 <span className="current-food">Current Food: {this.state.currentFood}</span>
                 <Button className="advance-day" label={"Advance Day!"} onClick={this.andvanceDay} disabled={advanceAvailable}/>
               </div>
-            {jsxCharacters}
+              <div className="character-container">
+                {jsxCharacters}
+              </div>
             <div className="footer">
               <div className="character-name">
                 <span className="label">Character name</span>
