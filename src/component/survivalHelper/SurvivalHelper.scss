@@ -1,0 +1,56 @@
+@mixin header-element {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.header {
+    width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    .forage {
+        @include header-element;
+
+        .label {
+            margin-right: 5px;
+        }
+    }
+
+    .starting-food {
+        @include header-element;
+
+        .label {
+            margin-right: 5px;
+        }
+    }
+
+    .days-passed {
+        @include header-element;
+    }
+
+    .current-food {
+        @include header-element;
+    }
+
+    .advance-day {
+        @include header-element;
+    }
+}
+
+.footer {
+    display: flex;
+
+    .character-name {
+        @include header-element;
+
+        .label {
+            margin-right: 5px;
+        }
+    }
+
+    .new-character {
+        @include header-element;
+    }
+}

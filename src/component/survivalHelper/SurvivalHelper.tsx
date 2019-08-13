@@ -4,6 +4,7 @@ import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { Spinner } from 'primereact/spinner';
 import { Dice } from '../../util/Dice';
+import './SurvivalHelper.scss';
 
 export interface SurvivalHelperState {
     characters: CharacterModel[];
@@ -140,18 +141,25 @@ export class SurvivalHelper extends React.Component<{}, SurvivalHelperState> {
         return (
           <div className="survival-helper">
               <div className="header">
-                <span>Forage DC</span>
-                <Spinner formatInput={true} decimalSeparator={","} thousandSeparator={" "} value={this.state.forageDC} onChange={e=> this.setState({forageDC: e.value})} min={8} max={30}/>
-                <span>Starting Food</span>
-                <InputText value={this.state.startingFood} keyfilter={'int'} onChange={this.updateStartingFood}/>
-                <span>Days Passed: {this.state.daysPassed}</span>
-                <span>Current Food: {this.state.currentFood}</span>
-                <Button label={"Advance Day!"} onClick={this.andvanceDay} disabled={advanceAvailable}/>
+                <div className="forage">
+                  <span className="label">Forage DC</span>
+                  <Spinner formatInput={true} decimalSeparator={","} thousandSeparator={" "} value={this.state.forageDC} onChange={e=> this.setState({forageDC: e.value})} min={8} max={30}/>
+                </div>
+                <div className="starting-food">
+                  <span className="label">Starting Food</span>
+                  <InputText value={this.state.startingFood} keyfilter={'int'} onChange={this.updateStartingFood}/>
+                </div>
+                <span className="days-passed">Days Passed: {this.state.daysPassed}</span>
+                <span className="current-food">Current Food: {this.state.currentFood}</span>
+                <Button className="advance-day" label={"Advance Day!"} onClick={this.andvanceDay} disabled={advanceAvailable}/>
               </div>
             {jsxCharacters}
-            <div>
-              <InputText value={this.state.newCharacterName} onChange={this.updateCharacterName} />
-              <Button label="Click" onClick={this.addCharacter}/>
+            <div className="footer">
+              <div className="character-name">
+                <span className="label">Character name</span>
+                <InputText className="input" value={this.state.newCharacterName} onChange={this.updateCharacterName} />
+              </div>
+              <Button className="new-character" label="Add new Character!" onClick={this.addCharacter}/>
             </div>
           </div>
         );
