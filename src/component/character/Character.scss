@@ -1,0 +1,49 @@
+$label-width: 70px;
+
+.character {
+    max-width: 500px;
+    margin-bottom: 10px;
+
+    .p-panel-content {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: stretch;
+        position: relative;
+        flex-direction: column;
+
+        .remove-button {
+            position: absolute;
+            top: -36px;
+            right: 2px;
+        }
+
+        .forage {
+            
+
+            .forage-label {
+                margin-right: 5px;
+            }
+        }
+
+        .forage-panel {
+            .survival {
+                margin-top: 5px;
+                display: flex;
+                align-items: center;
+
+                .survival-label {
+                    width: $label-width;
+                }
+            }
+            .wisdom {
+                display: flex;
+                align-items: center;
+                margin-top: 5px;
+
+                .wisdom-label {
+                    width: $label-width;
+                }
+            }
+        }
+    }
+}
