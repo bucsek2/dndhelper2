@@ -1,18 +1,12 @@
 import React from 'react';
-import {Button} from 'primereact/button';
-import {Character} from './Character';
+import { SurvivalHelper } from './component/survivalHelper/SurvivalHelper';
+
 
 class App extends React.Component {
-
-  addCharacter() {
-    console.log("asd");
-  }
-
   render() {
     return (
       <div className="App">
-        <Character></Character>
-        <Button label="Click" onClick={this.addCharacter} />
+        <SurvivalHelper/>
       </div>
     );
   }
