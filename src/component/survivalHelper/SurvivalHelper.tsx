@@ -5,6 +5,7 @@ import { Button } from 'primereact/button';
 import { Spinner } from 'primereact/spinner';
 import { Dice } from '../../util/Dice';
 import './SurvivalHelper.scss';
+import uuidv1 from 'uuid/v1';
 
 export interface SurvivalHelperState {
     characters: CharacterModel[];
@@ -27,7 +28,7 @@ export class SurvivalHelper extends React.Component<{}, SurvivalHelperState> {
             daysPassed: 0,
             startingFood: 0
         }
-    
+
         this.addCharacter = this.addCharacter.bind(this);
         this.updateCharacterName = this.updateCharacterName.bind(this);
         this.updateCharacter = this.updateCharacter.bind(this);
@@ -48,7 +49,7 @@ export class SurvivalHelper extends React.Component<{}, SurvivalHelperState> {
         }
     
         updated.push({
-          id: name,
+          id: uuidv1(),
           name: name,
           survival: 0,
           wisdom: 0,
