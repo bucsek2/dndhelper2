@@ -6,6 +6,7 @@ import { Spinner } from 'primereact/spinner';
 import { Dice } from '../../util/Dice';
 import './SurvivalHelper.scss';
 import uuidv1 from 'uuid/v1';
+import { StateHandler } from '../../util/StateHandler';
 
 export interface SurvivalHelperState {
     characters: CharacterModel[];
@@ -20,13 +21,25 @@ export class SurvivalHelper extends React.Component<{}, SurvivalHelperState> {
     constructor(props: any) {
         super(props);
     
-        this.state = {
+        let oldState = StateHandler.getSurvivalState();
+        if(oldState) {
+          this.state = {
+            forageDC: oldState.forageDC,
+            characters: oldState.characters,
+            newCharacterName: oldState.newCharacterName,
+            currentFood: oldState.currentFood,
+            daysPassed: oldState.daysPassed,
+            startingFood: oldState.startingFood
+          }
+        } else {
+          this.state = {
             forageDC: 10,
             characters: [],
             newCharacterName: "",
             currentFood: 0,
             daysPassed: 0,
             startingFood: 0
+          }
         }
 
         this.addCharacter = this.addCharacter.bind(this);
@@ -59,6 +72,8 @@ export class SurvivalHelper extends React.Component<{}, SurvivalHelperState> {
         this.setState({
           characters: updated,
           newCharacterName: ""
+        }, () => {
+          StateHandler.saveSurvivalState(this.state)
         });
       }
     
@@ -67,6 +82,8 @@ export class SurvivalHelper extends React.Component<{}, SurvivalHelperState> {
         
         this.setState({
           newCharacterName: target.value
+        }, () => {
+          StateHandler.saveSurvivalState(this.state)
         });
       }
     
@@ -82,6 +99,8 @@ export class SurvivalHelper extends React.Component<{}, SurvivalHelperState> {
         forUpdate[index] = character;
         this.setState({
           characters: forUpdate
+        }, () => {
+          StateHandler.saveSurvivalState(this.state)
         });
       }
 
@@ -96,6 +115,8 @@ export class SurvivalHelper extends React.Component<{}, SurvivalHelperState> {
         forUpdate.splice(index, 1);
         this.setState({
             characters: forUpdate
+        }, () => {
+          StateHandler.saveSurvivalState(this.state)
         });
       }
     
@@ -106,6 +127,8 @@ export class SurvivalHelper extends React.Component<{}, SurvivalHelperState> {
             startingFood: +target.value,
             currentFood: +target.value,
             daysPassed: 0
+        }, () => {
+          StateHandler.saveSurvivalState(this.state)
         });
       }
 
@@ -127,7 +150,9 @@ export class SurvivalHelper extends React.Component<{}, SurvivalHelperState> {
         this.setState( state => ({
             currentFood: state.currentFood - foodConsumption + foragedFood,
             daysPassed: state.daysPassed + 1
-        }));
+        }), () => {
+          StateHandler.saveSurvivalState(this.state)
+        });
       }
 
       render() {
