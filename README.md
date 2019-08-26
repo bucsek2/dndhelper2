@@ -1,3 +1,5 @@
+For deployed page, [see link](https://bucsek2.github.io/dndhelper2)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
